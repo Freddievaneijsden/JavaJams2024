@@ -29,11 +29,11 @@ public class FoodMenuApp extends Application {
                         "-fx-background-size: cover; " +
                         "-fx-background-position: center; " +
                         "-fx-background-repeat: no-repeat;"
-        );
-
+        
         // Create "ORDER NOW" label
-        orderNowLabel = new Label("ORDER NOW");
-        orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-halignment: center;");
+        // Declare orderNowLabel as a local variable
+      Label orderNowLabel = new Label("ORDER NOW");
+    orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: rgba(0,0,0,0.98); -fx-halignment: center;");
         HBox orderNowBox = new HBox();
         orderNowBox.getChildren().add(orderNowLabel);
         orderNowBox.setStyle("-fx-alignment: center;");
