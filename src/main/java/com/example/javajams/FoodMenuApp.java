@@ -1,4 +1,5 @@
 package com.example.javajams;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -36,7 +37,7 @@ public class FoodMenuApp extends Application {
         HBox orderNowBox = new HBox();
         orderNowBox.getChildren().add(orderNowLabel);
         orderNowBox.setStyle("-fx-alignment: center;");
-        gridPane.add(orderNowBox, 0, 0, 3, 1);
+        gridPane.add(orderNowBox, 0, 0, 4, 1);
 
         // List of food items (button names)
         List<String> uniqueName = Arrays.asList(
@@ -72,7 +73,7 @@ public class FoodMenuApp extends Application {
 
         // Re-add the "ORDER NOW" label back to the top
         HBox orderNowBox = new HBox();
-        Label orderNowLabel = new Label("ORDER NOW");
+        orderNowLabel = new Label("ORDER NOW");
         orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-halignment: center;");
         orderNowBox.getChildren().add(orderNowLabel);
         orderNowBox.setStyle("-fx-alignment: center;");
@@ -97,7 +98,7 @@ public class FoodMenuApp extends Application {
 
         // Re-add the "ORDER NOW" label back to the top
         HBox orderNowBox = new HBox();
-        Label orderNowLabel = new Label("ORDER NOW");
+        orderNowLabel = new Label("ORDER NOW");
         orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-halignment: center;");
         orderNowBox.getChildren().add(orderNowLabel);
         orderNowBox.setStyle("-fx-alignment: center;");
