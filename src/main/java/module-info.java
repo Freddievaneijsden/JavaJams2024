@@ -5,6 +5,6 @@ module com.example.javajams {
 
     opens com.example.javajams to javafx.fxml;
     exports com.example.javajams;
-    exports com.example;
-    opens com.example to javafx.fxml;
+    exports com.example.controller;
+    opens com.example.controller to javafx.fxml;
 }
