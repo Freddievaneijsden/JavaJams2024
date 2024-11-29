@@ -27,11 +27,11 @@ public class FoodMenuApp extends Application {
 
 
         Label orderNowLabel = new Label("ORDER NOW");
-        orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-halignment: center;");
+        orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: rgba(0,0,0,0.98); -fx-halignment: center;");
         HBox orderNowBox = new HBox();
         orderNowBox.getChildren().add(orderNowLabel);
         orderNowBox.setStyle("-fx-alignment: center;");
-        gridPane.add(orderNowBox, 0, 0, 3, 1);
+        gridPane.add(orderNowBox, 0, 0, 4, 1);
 
         List<String> uniqueName = Arrays.asList(
                 "Persiskt", "Sushi", "Turkiskt", "Burger King",
