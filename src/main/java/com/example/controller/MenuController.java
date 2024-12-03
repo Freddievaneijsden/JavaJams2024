@@ -44,8 +44,9 @@ public class MenuController {
 
         // Add buttons dynamically for the menu
         List<String> uniqueName = Arrays.asList(
-                "Persiskt", "Sushi", "Turkiskt", "Burger King",
-                "Tacos", "Pizza Hut", "Thai", "Libanesiskt"
+                "Persiskt", "Libanesiskt", "Burger King","McDonalds",
+                "Tacos", "Turkiskt", "Pizza Hut", "Dominos", "Thai",
+                "Vietnamesiskt", "Fermented Baltic Herring", "Sushi"
         );
 
         for (int i = 0; i < uniqueName.size(); i++) {
@@ -88,7 +89,7 @@ public class MenuController {
 
             gridPane.add(button, 0, i + 1);
 
-            final int currentIndex = i;
+            final int currentIndex = i + 1;
             button.setOnAction(e -> showRestaurantInfo(currentIndex));
         }
     }
