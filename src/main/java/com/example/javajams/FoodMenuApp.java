@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class FoodMenuApp extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) { 
         try {
             // Load FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/javajams/hello-view.fxml"));
