@@ -1,4 +1,4 @@
-package com.example.modul;
+package com.example.model;
 
 public class Restaurant {
         private final String name;

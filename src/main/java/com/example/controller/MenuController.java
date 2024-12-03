@@ -1,52 +1,100 @@
 package com.example.controller;
 
+import com.example.model.Model;
+import com.example.model.Restaurant;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-//hej
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+
+import java.util.Arrays;
+import java.util.List;
+
 public class MenuController {
+    private final Model model = new Model();
 
     @FXML
-    private Button button1;
-    @FXML
-    private Button button2;
-    @FXML
-    private Button button3;
-    @FXML
-    private Button button4;
-    @FXML
-    private Button button5;
-    @FXML
-    private Button button6;
-    @FXML
-    private Button button7;
-    @FXML
-    private Button button8;
-    @FXML
-    private Button button9;
-    @FXML
-    private Button button10;
-    @FXML
-    private Button button11;
-    @FXML
-    private Button button12;
+    private GridPane gridPane; // Reference to the GridPane from FXML
 
     @FXML
     private void initialize() {
-        button1.setOnAction(e -> handleButtonClick(button1));
-        button2.setOnAction(e -> handleButtonClick(button2));
-        button3.setOnAction(e -> handleButtonClick(button3));
-        button4.setOnAction(e -> handleButtonClick(button4));
-        button5.setOnAction(e -> handleButtonClick(button5));
-        button6.setOnAction(e -> handleButtonClick(button6));
-        button7.setOnAction(e -> handleButtonClick(button7));
-        button8.setOnAction(e -> handleButtonClick(button8));
-        button9.setOnAction(e -> handleButtonClick(button9));
-        button10.setOnAction(e -> handleButtonClick(button10));
-        button11.setOnAction(e -> handleButtonClick(button11));
-        button12.setOnAction(e -> handleButtonClick(button12));
+        gridPane.setStyle(
+                "-fx-background-image: url('" + getClass().getResource("/com/example/javajams/images/1.png").toExternalForm() + "'); " +
+                        "-fx-background-size: cover; " +
+                        "-fx-background-position: center; " +
+                        "-fx-background-repeat: no-repeat;"
+        );
+
+        resetContent(); // Populate the initial menu
     }
 
-    private void handleButtonClick(Button button) {
-        System.out.println(button.getText() + " vald!");
+    private void resetContent() {
+        gridPane.getChildren().clear();
+
+        // Add the "ORDER NOW" label
+        HBox orderNowBox = new HBox();
+        Label orderNowLabel = new Label("ORDER NOW");
+        orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-halignment: center;");
+        orderNowBox.getChildren().add(orderNowLabel);
+        orderNowBox.setStyle("-fx-alignment: center;");
+        gridPane.add(orderNowBox, 0, 0, 3, 1);
+
+        // Add buttons dynamically for the menu
+        List<String> uniqueName = Arrays.asList(
+                "Persiskt", "Sushi", "Turkiskt", "Burger King",
+                "Tacos", "Pizza Hut", "Thai", "Libanesiskt"
+        );
+
+        for (int i = 0; i < uniqueName.size(); i++) {
+            String buttonName = uniqueName.get(i);
+            Button button = new Button(buttonName);
+            button.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+            button.setPrefSize(200, 50);
+
+            gridPane.add(button, 0, i + 1);
+
+            final int currentIndex = i;
+            button.setOnAction(e -> showRestaurantInfo(currentIndex));
+        }
+    }
+
+    private void updateContent(Restaurant restaurant) {
+        gridPane.getChildren().clear();
+
+        // Add the "ORDER NOW" label
+        HBox orderNowBox = new HBox();
+        Label orderNowLabel = new Label("ORDER NOW");
+        orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-halignment: center;");
+        orderNowBox.getChildren().add(orderNowLabel);
+        orderNowBox.setStyle("-fx-alignment: center;");
+        gridPane.add(orderNowBox, 0, 0, 3, 1);
+
+        // Display information about the selected restaurant
+        Label restaurantInfo = new Label(
+                "Name: " + restaurant.getName() + "\n" +
+                        "Address: " + restaurant.getAddress() + "\n" +
+                        "Cuisine: " + restaurant.getCuisine()
+        );
+        restaurantInfo.setStyle("-fx-font-size: 18px; -fx-text-fill: white;");
+        gridPane.add(restaurantInfo, 0, 1, 3, 1);
+
+        // Add a back button
+        Button backButton = new Button("Back to Menu");
+        backButton.setStyle("-fx-font-size: 18px;");
+        backButton.setOnAction(e -> resetContent());
+        gridPane.add(backButton, 0, 2, 3, 1);
+    }
+
+    private void showRestaurantInfo(int index) {
+        Restaurant restaurant = model.getRestaurants().get(index);
+
+        if (restaurant != null) {
+            updateContent(restaurant); // Call the updateContent method to display the restaurant details
+        } else {
+            System.out.println("No restaurant found at index: " + index);
+        }
     }
 }
+
+
