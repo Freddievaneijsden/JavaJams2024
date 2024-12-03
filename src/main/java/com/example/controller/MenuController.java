@@ -35,7 +35,7 @@ public class MenuController {
         // Add the "ORDER NOW" label
         HBox orderNowBox = new HBox();
         Label orderNowLabel = new Label("ORDER NOW");
-        orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-halignment: center;");
+        orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: rgba(0,0,0,0.98); -fx-halignment: center;");
         orderNowBox.getChildren().add(orderNowLabel);
         orderNowBox.setStyle("-fx-alignment: center;");
         gridPane.add(orderNowBox, 0, 0, 3, 1);
@@ -96,5 +96,3 @@ public class MenuController {
         }
     }
 }
-
-
