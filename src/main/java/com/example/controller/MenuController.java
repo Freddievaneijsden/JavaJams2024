@@ -51,13 +51,45 @@ public class MenuController {
         for (int i = 0; i < uniqueName.size(); i++) {
             String buttonName = uniqueName.get(i);
             Button button = new Button(buttonName);
-            button.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+            button.setStyle(
+                    "-fx-font-size: 18px;" +
+                            "-fx-font-weight: bold;" +
+                            "-fx-text-fill: white;" +
+                            "-fx-background-color: linear-gradient(to bottom, #7c706d, #baada3);" +
+                            "-fx-border-color: #59504e;" +
+                            "-fx-border-width: 2px;" +
+                            "-fx-border-radius: 10px;" +
+                            "-fx-background-radius: 10px;"
+            );
+
+            // Adding hover effect
+            button.setOnMouseEntered(e -> button.setStyle(
+                    "-fx-font-size: 18px;" +
+                            "-fx-font-weight: bold;" +
+                            "-fx-text-fill: white;" +
+                            "-fx-background-color: linear-gradient(to bottom, #93918f, #575353);" +
+                            "-fx-border-color: rgba(0,0,0,0.98);" +
+                            "-fx-border-width: 2px;" +
+                            "-fx-border-radius: 10px;" +
+                            "-fx-background-radius: 10px;"
+            ));
+            button.setOnMouseExited(e -> button.setStyle(
+                    "-fx-font-size: 18px;" +
+                            "-fx-font-weight: bold;" +
+                            "-fx-text-fill: white;" +
+                            "-fx-background-color: linear-gradient(to bottom, #8a7975, #bdaa9d);" +
+                            "-fx-border-color: #635a58;" +
+                            "-fx-border-width: 2px;" +
+                            "-fx-border-radius: 10px;" +
+                            "-fx-background-radius: 10px;"
+            ));
+
             button.setPrefSize(200, 50);
 
             gridPane.add(button, 0, i + 1);
 
             final int currentIndex = i;
-            button.setOnAction(e -> showRestaurantInfo(currentIndex));  // Show restaurant info after clicking a button
+            button.setOnAction(e -> showRestaurantInfo(currentIndex));
         }
     }
 
@@ -81,50 +113,49 @@ public class MenuController {
         restaurantInfo.setStyle("-fx-font-size: 18px; -fx-text-fill: white;");
         gridPane.add(restaurantInfo, 0, 1, 3, 1);
 
-        // Add "Yes" and "No" buttons for confirmation
-        HBox buttonBox = new HBox();
+        // Add Yes and No buttons
         Button yesButton = new Button("Yes");
-        yesButton.setStyle("-fx-font-size: 18px;");
-        yesButton.setOnAction(e -> confirmRestaurant(restaurant));
+        yesButton.setStyle("-fx-font-size: 18px; -fx-background-color: green;");
+        yesButton.setOnAction(e -> {
+            // Confirm the choice (you can display a confirmation message or return to menu)
+            showConfirmationMessage(restaurant);
+        });
+        gridPane.add(yesButton, 0, 2);
 
         Button noButton = new Button("No");
-        noButton.setStyle("-fx-font-size: 18px;");
-        noButton.setOnAction(e -> showRandomRestaurant());
-
-        buttonBox.getChildren().addAll(yesButton, noButton);
-        buttonBox.setStyle("-fx-spacing: 20px; -fx-alignment: center;");
-        gridPane.add(buttonBox, 0, 2, 3, 1);
+        noButton.setStyle("-fx-font-size: 18px; -fx-background-color: red;");
+        noButton.setOnAction(e -> showRandomRestaurant()); // Show a random restaurant
+        gridPane.add(noButton, 2, 2);
     }
 
+
+
     private void showRestaurantInfo(int index) {
-        Restaurant restaurant = model.getRestaurantByIndex(index);
+        Restaurant restaurant = model.getRestaurants().get(index);
 
         if (restaurant != null) {
-            updateContent(restaurant); // Show restaurant details
+            updateContent(restaurant); // Call the updateContent method to display the restaurant details
+        } else {
+            System.out.println("No restaurant found at index: " + index);
         }
     }
 
-    private void confirmRestaurant(Restaurant restaurant) {
-        // Show confirmation dialog
-        Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
-        confirmationAlert.setTitle("Order Confirmed");
-        confirmationAlert.setHeaderText("You have confirmed your order from " + restaurant.getName() + ".");
-        confirmationAlert.setContentText("Enjoy your meal!");
-        confirmationAlert.showAndWait();
+    private void showConfirmationMessage(Restaurant restaurant) {
+        // A confirmation alert for the user after choosing "Yes"
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Your choice");
+        alert.setContentText("You have chosen " + restaurant.getName());
+        alert.showAndWait();
 
         // After confirming, reset the content to the main menu
         resetContent();
     }
 
     private void showRandomRestaurant() {
-        // Get a random restaurant from the list
-        Random rand = new Random();
-        int randomIndex = rand.nextInt(model.getRestaurants().size());
-        Restaurant randomRestaurant = model.getRestaurantByIndex(randomIndex);
-
-        if (randomRestaurant != null) {
-            // Show the randomly selected restaurant's details
-            updateContent(randomRestaurant);
-        }
+        Random random = new Random();
+        int randomIndex = random.nextInt(model.getRestaurants().size());
+        Restaurant randomRestaurant = model.getRestaurants().get(randomIndex);
+        updateContent(randomRestaurant); // Show the random restaurant details
     }
 }
