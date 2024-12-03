@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.model.Model;
 import com.example.model.Restaurant;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -10,6 +11,7 @@ import javafx.scene.layout.HBox;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class MenuController {
     private final Model model = new Model();
@@ -55,7 +57,7 @@ public class MenuController {
             gridPane.add(button, 0, i + 1);
 
             final int currentIndex = i;
-            button.setOnAction(e -> showRestaurantInfo(currentIndex));
+            button.setOnAction(e -> showRestaurantInfo(currentIndex));  // Show restaurant info after clicking a button
         }
     }
 
@@ -79,22 +81,50 @@ public class MenuController {
         restaurantInfo.setStyle("-fx-font-size: 18px; -fx-text-fill: white;");
         gridPane.add(restaurantInfo, 0, 1, 3, 1);
 
-        // Add a back button
-        Button backButton = new Button("Back to Menu");
-        backButton.setStyle("-fx-font-size: 18px;");
-        backButton.setOnAction(e -> resetContent());
-        gridPane.add(backButton, 0, 2, 3, 1);
+        // Add "Yes" and "No" buttons for confirmation
+        HBox buttonBox = new HBox();
+        Button yesButton = new Button("Yes");
+        yesButton.setStyle("-fx-font-size: 18px;");
+        yesButton.setOnAction(e -> confirmRestaurant(restaurant));
+
+        Button noButton = new Button("No");
+        noButton.setStyle("-fx-font-size: 18px;");
+        noButton.setOnAction(e -> showRandomRestaurant());
+
+        buttonBox.getChildren().addAll(yesButton, noButton);
+        buttonBox.setStyle("-fx-spacing: 20px; -fx-alignment: center;");
+        gridPane.add(buttonBox, 0, 2, 3, 1);
     }
 
     private void showRestaurantInfo(int index) {
-        Restaurant restaurant = model.getRestaurants().get(index);
+        Restaurant restaurant = model.getRestaurantByIndex(index);
 
         if (restaurant != null) {
-            updateContent(restaurant); // Call the updateContent method to display the restaurant details
-        } else {
-            System.out.println("No restaurant found at index: " + index);
+            updateContent(restaurant); // Show restaurant details
+        }
+    }
+
+    private void confirmRestaurant(Restaurant restaurant) {
+        // Show confirmation dialog
+        Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
+        confirmationAlert.setTitle("Order Confirmed");
+        confirmationAlert.setHeaderText("You have confirmed your order from " + restaurant.getName() + ".");
+        confirmationAlert.setContentText("Enjoy your meal!");
+        confirmationAlert.showAndWait();
+
+        // After confirming, reset the content to the main menu
+        resetContent();
+    }
+
+    private void showRandomRestaurant() {
+        // Get a random restaurant from the list
+        Random rand = new Random();
+        int randomIndex = rand.nextInt(model.getRestaurants().size());
+        Restaurant randomRestaurant = model.getRestaurantByIndex(randomIndex);
+
+        if (randomRestaurant != null) {
+            // Show the randomly selected restaurant's details
+            updateContent(randomRestaurant);
         }
     }
 }
-
-
