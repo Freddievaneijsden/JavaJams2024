@@ -49,39 +49,7 @@ public class MenuController {
         for (int i = 0; i < uniqueName.size(); i++) {
             String buttonName = uniqueName.get(i);
             Button button = new Button(buttonName);
-            button.setStyle(
-                    "-fx-font-size: 18px;" +
-                            "-fx-font-weight: bold;" +
-                            "-fx-text-fill: white;" +
-                            "-fx-background-color: linear-gradient(to bottom, #7c706d, #baada3);" +
-                            "-fx-border-color: #59504e;" +
-                            "-fx-border-width: 2px;" +
-                            "-fx-border-radius: 10px;" +
-                            "-fx-background-radius: 10px;"
-            );
-
-            // Adding hower effect
-            button.setOnMouseEntered(e -> button.setStyle(
-                    "-fx-font-size: 18px;" +
-                            "-fx-font-weight: bold;" +
-                            "-fx-text-fill: white;" +
-                            "-fx-background-color: linear-gradient(to bottom, #93918f, #575353);" +
-                            "-fx-border-color: rgba(0,0,0,0.98);" +
-                            "-fx-border-width: 2px;" +
-                            "-fx-border-radius: 10px;" +
-                            "-fx-background-radius: 10px;"
-            ));
-            button.setOnMouseExited(e -> button.setStyle(
-                    "-fx-font-size: 18px;" +
-                            "-fx-font-weight: bold;" +
-                            "-fx-text-fill: white;" +
-                            "-fx-background-color: linear-gradient(to bottom, #8a7975, #bdaa9d);" +
-                            "-fx-border-color: #635a58;" +
-                            "-fx-border-width: 2px;" +
-                            "-fx-border-radius: 10px;" +
-                            "-fx-background-radius: 10px;"
-            ));
-
+            button.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
             button.setPrefSize(200, 50);
 
             gridPane.add(button, 0, i + 1);
