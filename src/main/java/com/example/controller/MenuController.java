@@ -34,7 +34,7 @@ public class MenuController {
 
         // Add the "ORDER NOW" label
         HBox orderNowBox = new HBox();
-        Label orderNowLabel = new Label("ORDER NOW");
+        Label orderNowLabel = new Label("ORDER NOoW");
         orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-halignment: center;");
         orderNowBox.getChildren().add(orderNowLabel);
         orderNowBox.setStyle("-fx-alignment: center;");
