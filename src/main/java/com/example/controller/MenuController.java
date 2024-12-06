@@ -10,10 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 public class MenuController {
     private final Model model = new Model();
@@ -96,9 +93,9 @@ public class MenuController {
                             "-fx-background-radius: 10px;"
             ));
 
-            button.setPrefSize(200, 50);
-
             gridPane.add(button, 0, i + 1);
+
+            button.setPrefSize(200, 50);
 
             final int currentIndex = i;
             button.setOnAction(e -> showRestaurantInfo(currentIndex));

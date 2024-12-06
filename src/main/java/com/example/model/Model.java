@@ -15,14 +15,14 @@ public class Model {
         Restaurant lebaneseGrillhouse = new Restaurant("Lebanese Grillhouse", "Stampgatan 48", "Libanesiskt", "/com/example/javajams/images/Libanesiskt.png.png");
         Restaurant burgerKing = new Restaurant("Burger King", "Postgatan 47, 411 06 Göteborg", "Burgare", "/com/example/javajams/images/BurgerKing.png.png");
         Restaurant mcdonalds = new Restaurant("McDonalds", "Kungsportsavenyen 32, 411 36 Göteborg", "Burgare", "/com/example/javajams/images/McDonalds.png.png");
-        Restaurant tacoBar = new Restaurant("Taco Bar", "Kyrkogatan 37, 411 08 Göteborg", "Mexikanskt", "/com/example/javajams/images/2.jpg");
-        Restaurant lillaIstanbul = new Restaurant("Lilla Istanbul", "Färgfabriksgatan 1, 417 05 Göteborg", "Turkiskt", "/com/example/javajams/images/2.jpg");
-        Restaurant pizzaHut = new Restaurant("Pizza Hut", "Postgatan 47, 411 06 Göteborg", "Pizza", "/com/example/javajams/images/2.jpg");
-        Restaurant dominos = new Restaurant("Dominos", "Frida Hjertbergs Gata 10, 412 81 Göteborg", "Pizza", "/com/example/javajams/images/2.jpg");
-        Restaurant arojjDii = new Restaurant("Arojj Dii", "Viktor Rydbergsgatan 42, 412 57 Göteborg", "Thaimat", "/com/example/javajams/images/2.jpg");
-        Restaurant pho88 = new Restaurant("Pho88", "Fredriksdalsgatan 4A, 412 65 Göteborg", "Vietnamesiskt", "/com/example/javajams/images/2.jpg");
-        Restaurant feskekorka = new Restaurant("Feskekorka", "Fisktorget 4, 411 20 Göteborg", "Svenskt", "/com/example/javajams/images/2.jpg");
-        Restaurant rokuSushi = new Restaurant("Roku Sushi", "Falkenbergsgatan 4E, 412 84 Göteborg", "Sushi", "/com/example/javajams/images/2.jpg");
+        Restaurant tacoBar = new Restaurant("Taco Bar", "Kyrkogatan 37, 411 08 Göteborg", "Mexikanskt", "/com/example/javajams/images/TacoBar.png");
+        Restaurant lillaIstanbul = new Restaurant("Lilla Istanbul", "Färgfabriksgatan 1, 417 05 Göteborg", "Turkiskt", "/com/example/javajams/images/TurkiskMat.png");
+        Restaurant pizzaHut = new Restaurant("Pizza Hut", "Postgatan 47, 411 06 Göteborg", "Pizza", "/com/example/javajams/images/PizzaHut.png");
+        Restaurant dominos = new Restaurant("Dominos", "Frida Hjertbergs Gata 10, 412 81 Göteborg", "Pizza", "/com/example/javajams/images/Domios.png");
+        Restaurant arojjDii = new Restaurant("Arojj Dii", "Viktor Rydbergsgatan 42, 412 57 Göteborg", "Thaimat", "/com/example/javajams/images/ThaiMat.png");
+        Restaurant pho88 = new Restaurant("Pho88", "Fredriksdalsgatan 4A, 412 65 Göteborg", "Vietnamesiskt", "/com/example/javajams/images/Vietnameese.png");
+        Restaurant feskekorka = new Restaurant("Feskekorka", "Fisktorget 4, 411 20 Göteborg", "Svenskt", "/com/example/javajams/images/SurStrömming.png");
+        Restaurant rokuSushi = new Restaurant("Roku Sushi", "Falkenbergsgatan 4E, 412 84 Göteborg", "Sushi", "/com/example/javajams/images/Sushi.png");
 
         // Add restaurants to the list
         Restaurants.addAll(List.of(
