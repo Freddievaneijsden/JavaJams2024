@@ -100,7 +100,7 @@ public class MenuController {
 
             gridPane.add(button, 0, i + 1);
 
-            final int currentIndex = i + 1;
+            final int currentIndex = i;
             button.setOnAction(e -> showRestaurantInfo(currentIndex));
         }
     }
@@ -159,10 +159,11 @@ public class MenuController {
 
 
     private void showRestaurantInfo(int index) {
-        Restaurant restaurant = model.getRestaurants().get(index);
+        Restaurant selectedRestaurant = model.getRestaurantByIndex(index);
 
-        if (restaurant != null) {
-            updateContent(restaurant); // Call the updateContent method to display the restaurant details
+        if (selectedRestaurant != null) {
+            Restaurant mismatchedRestaurant = model.getMismatchedRestaurant(selectedRestaurant);
+            updateContent(mismatchedRestaurant); // Display the mismatched restaurant's info
         } else {
             System.out.println("No restaurant found at index: " + index);
         }
