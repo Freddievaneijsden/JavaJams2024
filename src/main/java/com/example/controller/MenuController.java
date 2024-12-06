@@ -5,16 +5,20 @@ import com.example.model.Restaurant;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class MenuController {
     private final Model model = new Model();
+
+    private static final String DEFAULT_BACKGROUND = "/com/example/javajams/images/1.png";
 
     @FXML
     private GridPane gridPane; // Reference to the GridPane from FXML
@@ -34,6 +38,13 @@ public class MenuController {
     private void resetContent() {
         gridPane.getChildren().clear();
 
+        gridPane.setStyle(
+                "-fx-background-image: url('" + getClass().getResource(DEFAULT_BACKGROUND).toExternalForm() + "'); " +
+                        "-fx-background-size: cover; " +
+                        "-fx-background-position: center; " +
+                        "-fx-background-repeat: no-repeat;"
+        );
+
         // Add the "ORDER NOW" label
         HBox orderNowBox = new HBox();
         Label orderNowLabel = new Label("ORDER NoOoW");
@@ -44,7 +55,7 @@ public class MenuController {
 
         // Add buttons dynamically for the menu
         List<String> uniqueName = Arrays.asList(
-                "Persiskt", "Libanesiskt", "Burger King","McDonalds",
+                "Persiskt", "Libanesiskt", "Burger King", "McDonalds",
                 "Tacos", "Turkiskt", "Pizza Hut", "Dominos", "Thai",
                 "Vietnamesiskt", "Fermented Baltic Herring", "Sushi"
         );
@@ -97,6 +108,23 @@ public class MenuController {
     private void updateContent(Restaurant restaurant) {
         gridPane.getChildren().clear();
 
+        if (restaurant.getBackgroundImage() != null) {
+            gridPane.setStyle(
+                    "-fx-background-image: url('" + getClass().getResource(restaurant.getBackgroundImage()).toExternalForm() + "'); " +
+                            "-fx-background-size: contain; " +
+                            "-fx-background-position: center; " +
+                            "-fx-background-repeat: no-repeat;"
+            );
+        } else{
+            if (restaurant != null && restaurant.getBackgroundImage() != null) {
+                gridPane.setStyle(
+                        "-fx-background-image: url('" + getClass().getResource(restaurant.getBackgroundImage()).toExternalForm() + "'); " +
+                                "-fx-background-size: cover; " +
+                                "-fx-background-position: center; " +
+                                "-fx-background-repeat: no-repeat;");
+            }
+        }
+
         // Add the "ORDER NOW" label
         HBox orderNowBox = new HBox();
         Label orderNowLabel = new Label("ORDER NOW");
@@ -125,10 +153,9 @@ public class MenuController {
 
         Button noButton = new Button("No");
         noButton.setStyle("-fx-font-size: 18px; -fx-background-color: red;");
-        noButton.setOnAction(e -> showRandomRestaurant()); // Show a random restaurant
+        noButton.setOnAction(e -> showDoubleCheckButton(restaurant)); // Show a random restaurant
         gridPane.add(noButton, 2, 2);
     }
-
 
 
     private void showRestaurantInfo(int index) {
@@ -153,10 +180,30 @@ public class MenuController {
         resetContent();
     }
 
-    private void showRandomRestaurant() {
-        Random random = new Random();
-        int randomIndex = random.nextInt(model.getRestaurants().size());
-        Restaurant randomRestaurant = model.getRestaurants().get(randomIndex);
-        updateContent(randomRestaurant); // Show the random restaurant details
+    private void showDoubleCheckButton(Restaurant restaurant) {
+        // A confirmation alert for the user after choosing "Yes"
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Are you sure");
+        alert.setHeaderText("You looked like you really wanted " + restaurant.getName());
+        alert.setContentText("Are you positive that " + restaurant.getName() + "isn't a better choise?");
+
+        ButtonType yesButton = new ButtonType("Yes");
+        ButtonType noButton = new ButtonType("No");
+        alert.getButtonTypes().setAll(yesButton, noButton);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == yesButton) {
+            resetContent();
+        }else {
+        }
     }
 }
+
+//    private void showRandomRestaurant() {
+//        Random random = new Random();
+//        int randomIndex = random.nextInt(model.getRestaurants().size());
+//        Restaurant randomRestaurant = model.getRestaurants().get(randomIndex);
+//        updateContent(randomRestaurant); // Show the random restaurant details
+//    }
+
