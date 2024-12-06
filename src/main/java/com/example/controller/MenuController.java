@@ -100,7 +100,7 @@ public class MenuController {
 
             gridPane.add(button, 0, i + 1);
 
-            final int currentIndex = i + 1;
+            final int currentIndex = i;
             button.setOnAction(e -> showRestaurantInfo(currentIndex));
         }
     }
