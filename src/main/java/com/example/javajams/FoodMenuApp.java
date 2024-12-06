@@ -18,7 +18,7 @@ public class FoodMenuApp extends Application {
             Parent root = loader.load();
 
             // Set Scene
-            Scene scene = new Scene(root, 400, 850);
+            Scene scene = new Scene(root, 600, 700);
             primaryStage.setTitle("Matmeny");
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);

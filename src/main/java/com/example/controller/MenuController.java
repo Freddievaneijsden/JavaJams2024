@@ -3,12 +3,16 @@ package com.example.controller;
 import com.example.model.Model;
 import com.example.model.Restaurant;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 
 import java.util.*;
 
@@ -45,7 +49,7 @@ public class MenuController {
         // Add the "ORDER NOW" label
         HBox orderNowBox = new HBox();
         Label orderNowLabel = new Label("ORDER NoOoW");
-        orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-halignment: center;");
+        orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: Black; -fx-halignment: center;");
         orderNowBox.getChildren().add(orderNowLabel);
         orderNowBox.setStyle("-fx-alignment: center;");
         gridPane.add(orderNowBox, 0, 0, 3, 1);
@@ -104,11 +108,12 @@ public class MenuController {
 
     private void updateContent(Restaurant restaurant) {
         gridPane.getChildren().clear();
+        gridPane.setAlignment(Pos.TOP_CENTER);
 
         if (restaurant.getBackgroundImage() != null) {
             gridPane.setStyle(
                     "-fx-background-image: url('" + getClass().getResource(restaurant.getBackgroundImage()).toExternalForm() + "'); " +
-                            "-fx-background-size: contain; " +
+                            "-fx-background-size: 100% 55%; " +
                             "-fx-background-position: center; " +
                             "-fx-background-repeat: no-repeat;"
             );
@@ -116,42 +121,50 @@ public class MenuController {
             if (restaurant != null && restaurant.getBackgroundImage() != null) {
                 gridPane.setStyle(
                         "-fx-background-image: url('" + getClass().getResource(restaurant.getBackgroundImage()).toExternalForm() + "'); " +
-                                "-fx-background-size: cover; " +
+                                "-fx-background-size: contain; " +
                                 "-fx-background-position: center; " +
                                 "-fx-background-repeat: no-repeat;");
             }
         }
 
-        // Add the "ORDER NOW" label
-        HBox orderNowBox = new HBox();
-        Label orderNowLabel = new Label("ORDER NOW");
-        orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; -fx-halignment: center;");
-        orderNowBox.getChildren().add(orderNowLabel);
-        orderNowBox.setStyle("-fx-alignment: center;");
-        gridPane.add(orderNowBox, 0, 0, 3, 1);
+        VBox contentBox = new VBox(20);
+        contentBox.setAlignment(Pos.TOP_CENTER);
+        contentBox.setPadding(new Insets(20, 10, 20, 10));
 
-        // Display information about the selected restaurant
+
+        Label orderNowLabel = new Label("ORDER NoOoW");
+        orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: Black;");
+        contentBox.getChildren().add(orderNowLabel);
+
         Label restaurantInfo = new Label(
                 "Name: " + restaurant.getName() + "\n" +
                         "Address: " + restaurant.getAddress() + "\n" +
                         "Cuisine: " + restaurant.getCuisine()
         );
-        restaurantInfo.setStyle("-fx-font-size: 18px; -fx-text-fill: white;");
-        gridPane.add(restaurantInfo, 0, 1, 3, 1);
+        restaurantInfo.setStyle("-fx-font-size: 18px; -fx-text-fill: black;");
+        contentBox.getChildren().add(restaurantInfo);
 
-        // Add Yes and No buttons
+        GridPane.setVgrow(contentBox, Priority.ALWAYS);
+        gridPane.add(contentBox, 0, 0);
+
+        HBox buttonBox = new HBox(20); // 20px spacing mellan knapparna
+        buttonBox.setAlignment(Pos.BOTTOM_CENTER); // Centrera knappar längst ner
+
+        // Ja-knappen
         Button yesButton = new Button("Yes");
-        yesButton.setStyle("-fx-font-size: 18px; -fx-background-color: green;");
-        yesButton.setOnAction(e -> {
-            // Confirm the choice (you can display a confirmation message or return to menu)
-            showConfirmationMessage(restaurant);
-        });
-        gridPane.add(yesButton, 0, 2);
+        yesButton.setStyle("-fx-font-size: 18px; -fx-background-color: green; -fx-text-fill: Red;");
+        yesButton.setOnAction(e -> showConfirmationMessage(restaurant));
+        buttonBox.getChildren().add(yesButton);
 
+        // Nej-knappen
         Button noButton = new Button("No");
-        noButton.setStyle("-fx-font-size: 18px; -fx-background-color: red;");
-        noButton.setOnAction(e -> showDoubleCheckButton(restaurant)); // Show a random restaurant
-        gridPane.add(noButton, 2, 2);
+        noButton.setStyle("-fx-font-size: 18px; -fx-background-color: red; -fx-text-fill: Green;");
+        noButton.setOnAction(e -> showDoubleCheckButton(restaurant));
+        buttonBox.getChildren().add(noButton);
+
+        // Lägg till buttonBox i GridPane längst ner
+        GridPane.setVgrow(buttonBox, Priority.ALWAYS);
+        gridPane.add(buttonBox, 0, 2);
     }
 
 
