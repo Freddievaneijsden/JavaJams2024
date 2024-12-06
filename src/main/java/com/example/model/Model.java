@@ -22,12 +22,12 @@ public class Model {
         Restaurant arojjDii = new Restaurant("Arojj Dii", "Viktor Rydbergsgatan 42, 412 57 Göteborg", "Thaimat", "/com/example/javajams/images/ThaiMat.png");
         Restaurant pho88 = new Restaurant("Pho88", "Fredriksdalsgatan 4A, 412 65 Göteborg", "Vietnamesiskt", "/com/example/javajams/images/Vietnameese.png");
         Restaurant feskekorka = new Restaurant("Feskekorka", "Fisktorget 4, 411 20 Göteborg", "Svenskt", "/com/example/javajams/images/SurStrömming.png");
-        Restaurant rokuSushi = new Restaurant("Roku Sushi", "Falkenbergsgatan 4E, 412 84 Göteborg", "Sushi", "/com/example/javajams/images/Sushi.png");
+
 
         // Add restaurants to the list
         Restaurants.addAll(List.of(
                 perspolis, lebaneseGrillhouse, burgerKing, mcdonalds, tacoBar,
-                lillaIstanbul, pizzaHut, dominos, arojjDii, pho88, feskekorka, rokuSushi
+                lillaIstanbul, pizzaHut, dominos, arojjDii, pho88, feskekorka
         ));
 
         // Create mismatched associations
@@ -41,8 +41,7 @@ public class Model {
         mismatchedRestaurants.put(pizzaHut, dominos);
         mismatchedRestaurants.put(pho88, arojjDii);
         mismatchedRestaurants.put(arojjDii, pho88);
-        mismatchedRestaurants.put(feskekorka, rokuSushi);
-        mismatchedRestaurants.put(rokuSushi, feskekorka);
+        mismatchedRestaurants.put(feskekorka, feskekorka);
         // You can add more mismatched logic as needed
     }
 

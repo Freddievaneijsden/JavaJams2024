@@ -58,7 +58,7 @@ public class MenuController {
         List<String> uniqueName = Arrays.asList(
                 "Persiskt", "Libanesiskt", "Burger King", "McDonalds",
                 "Tacos", "Turkiskt", "Pizza Hut", "Dominos", "Thai",
-                "Vietnamesiskt", "Fermented Baltic Herring", "Sushi"
+                "Vietnamesiskt", "Surströmming"
         );
 
         for (int i = 0; i < uniqueName.size(); i++) {
