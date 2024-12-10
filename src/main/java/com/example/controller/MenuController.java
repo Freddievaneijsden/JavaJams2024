@@ -190,6 +190,7 @@ public class MenuController {
                         "-fx-background-radius: 10px;"
         ));
 
+
         GridPane.setVgrow(contentBox, Priority.ALWAYS);
         gridPane.add(contentBox, 0, 0);
 
