@@ -10,6 +10,12 @@ public class Model {
     private final Map<Restaurant, Restaurant> mismatchedRestaurants = new HashMap<>();
     List<String> listOfSurpriseExpressions = new ArrayList<>();
 
+    private final Surstromming surstromming = new Surstromming(
+            "Nu skojar du med mig valde du SURSTRÖMMING",
+            "Det måste ju vara något riktigt fel på dig",
+            "/com/example/javajams/images/SurStrömming.png"
+    );
+
     public Model() {
         // Create restaurants
         Restaurant perspolis = new Restaurant("Perspolis", "Mölndalsvägen 95, 412 83 Göteborg", "Persiskt", "/com/example/javajams/images/Persiskmat.png.jpg", "https://perspolis.nu/");
@@ -59,6 +65,7 @@ public class Model {
     public String toString() {
         return "Model{" +
                 "Restaurants=" + Restaurants +
+                "Surströmming =" + surstromming +
                 '}';
     }
 
@@ -72,6 +79,10 @@ public class Model {
         } else {
             return null;  // Index out of bounds
         }
+    }
+
+    public Surstromming getSurstromming() {
+        return surstromming;
     }
 
     public Restaurant getMismatchedRestaurant(Restaurant restaurant) {
