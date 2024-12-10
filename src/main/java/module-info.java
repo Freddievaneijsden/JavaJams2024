@@ -13,4 +13,3 @@ module com.example.javajams {
     exports com.example.model;
 
 }
-
