@@ -19,7 +19,7 @@ public class FoodMenuApp extends Application {
 
             // Set Scene
             Scene scene = new Scene(root, 800, 750);
-            primaryStage.setTitle("Taste Twist");
+            primaryStage.setTitle("Restaurant Roulette");
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.show();
