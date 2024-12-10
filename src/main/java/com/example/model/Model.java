@@ -12,17 +12,17 @@ public class Model {
 
     public Model() {
         // Create restaurants
-        Restaurant perspolis = new Restaurant("Perspolis", "Mölndalsvägen 95, 412 83 Göteborg", "Persiskt", "/com/example/javajams/images/Persiskmat.png.jpg");
-        Restaurant lebaneseGrillhouse = new Restaurant("Lebanese Grillhouse", "Stampgatan 48", "Libanesiskt", "/com/example/javajams/images/Libanesiskt.png.png");
-        Restaurant burgerKing = new Restaurant("Burger King", "Postgatan 47, 411 06 Göteborg", "Burgare", "/com/example/javajams/images/BurgerKing.png.png");
-        Restaurant mcdonalds = new Restaurant("McDonalds", "Kungsportsavenyen 32, 411 36 Göteborg", "Burgare", "/com/example/javajams/images/McDonalds.png.png");
-        Restaurant tacoBar = new Restaurant("Taco Bar", "Kyrkogatan 37, 411 08 Göteborg", "Mexikanskt", "/com/example/javajams/images/TacoBar.png");
-        Restaurant lillaIstanbul = new Restaurant("Lilla Istanbul", "Färgfabriksgatan 1, 417 05 Göteborg", "Turkiskt", "/com/example/javajams/images/TurkiskMat.png");
-        Restaurant pizzaHut = new Restaurant("Pizza Hut", "Postgatan 47, 411 06 Göteborg", "Pizza", "/com/example/javajams/images/PizzaHut.png");
-        Restaurant dominos = new Restaurant("Dominos", "Frida Hjertbergs Gata 10, 412 81 Göteborg", "Pizza", "/com/example/javajams/images/Domios.png");
-        Restaurant arojjDii = new Restaurant("Arojj Dii", "Viktor Rydbergsgatan 42, 412 57 Göteborg", "Thaimat", "/com/example/javajams/images/ThaiMat.png");
-        Restaurant pho88 = new Restaurant("Pho88", "Fredriksdalsgatan 4A, 412 65 Göteborg", "Vietnamesiskt", "/com/example/javajams/images/Vietnameese.png");
-        Restaurant feskekorka = new Restaurant("Feskekorka", "Fisktorget 4, 411 20 Göteborg", "Svenskt", "/com/example/javajams/images/SurStrömming.png");
+        Restaurant perspolis = new Restaurant("Perspolis", "Mölndalsvägen 95, 412 83 Göteborg", "Persiskt", "/com/example/javajams/images/Persiskmat.png.jpg", "https://perspolis.nu/");
+        Restaurant lebaneseGrillhouse = new Restaurant("Lebanese Grillhouse", "Stampgatan 48", "Libanesiskt", "/com/example/javajams/images/Libanesiskt.png.png","https://perspolis.nu/");
+        Restaurant burgerKing = new Restaurant("Burger King", "Postgatan 47, 411 06 Göteborg", "Burgare", "/com/example/javajams/images/BurgerKing.png.png","https://perspolis.nu/");
+        Restaurant mcdonalds = new Restaurant("McDonalds", "Kungsportsavenyen 32, 411 36 Göteborg", "Burgare", "/com/example/javajams/images/McDonalds.png.png","https://perspolis.nu/");
+        Restaurant tacoBar = new Restaurant("Taco Bar", "Kyrkogatan 37, 411 08 Göteborg", "Mexikanskt", "/com/example/javajams/images/TacoBar.png","https://perspolis.nu/");
+        Restaurant lillaIstanbul = new Restaurant("Lilla Istanbul", "Färgfabriksgatan 1, 417 05 Göteborg", "Turkiskt", "/com/example/javajams/images/TurkiskMat.png","https://perspolis.nu/");
+        Restaurant pizzaHut = new Restaurant("Pizza Hut", "Postgatan 47, 411 06 Göteborg", "Pizza", "/com/example/javajams/images/PizzaHut.png","https://perspolis.nu/");
+        Restaurant dominos = new Restaurant("Dominos", "Frida Hjertbergs Gata 10, 412 81 Göteborg", "Pizza", "/com/example/javajams/images/Domios.png","https://perspolis.nu/");
+        Restaurant arojjDii = new Restaurant("Arojj Dii", "Viktor Rydbergsgatan 42, 412 57 Göteborg", "Thaimat", "/com/example/javajams/images/ThaiMat.png","https://perspolis.nu/");
+        Restaurant pho88 = new Restaurant("Pho88", "Fredriksdalsgatan 4A, 412 65 Göteborg", "Vietnamesiskt", "/com/example/javajams/images/Vietnameese.png","https://perspolis.nu/");
+        Restaurant feskekorka = new Restaurant("Feskekorka", "Fisktorget 4, 411 20 Göteborg", "Svenskt", "/com/example/javajams/images/SurStrömming.png","https://perspolis.nu/");
 
 
         // Add restaurants to the list
