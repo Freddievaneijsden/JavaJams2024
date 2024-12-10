@@ -23,7 +23,7 @@ import javafx.scene.image.ImageView;
 public class MenuController {
     private final Model model = new Model();
 
-    private static final String DEFAULT_BACKGROUND = "/com/example/javajams/images/1.png";
+    private static final String DEFAULT_BACKGROUND = "/com/example/javajams/images/rest.jpg";
 
     @FXML
     private GridPane gridPane; // Reference to the GridPane from FXML
@@ -31,7 +31,7 @@ public class MenuController {
     @FXML
     private void initialize() {
         gridPane.setStyle(
-                "-fx-background-image: url('" + getClass().getResource("/com/example/javajams/images/1.png").toExternalForm() + "'); " +
+                "-fx-background-image: url('" + getClass().getResource("/com/example/javajams/images/rest.jpg").toExternalForm() + "'); " +
                         "-fx-background-size: cover; " +
                         "-fx-background-position: center; " +
                         "-fx-background-repeat: no-repeat;"
@@ -39,7 +39,6 @@ public class MenuController {
 
         resetContent(); // Populate the initial menu
     }
-
     private void resetContent() {
         gridPane.getChildren().clear();
 
@@ -50,21 +49,27 @@ public class MenuController {
                         "-fx-background-repeat: no-repeat;"
         );
 
-        // Add the "ORDER NOW" label
-        HBox orderNowBox = new HBox();
-        Label orderNowLabel = new Label("ORDER NoOoW");
-        orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: Black; -fx-halignment: center;");
-        orderNowBox.getChildren().add(orderNowLabel);
-        orderNowBox.setStyle("-fx-alignment: center;");
-        gridPane.add(orderNowBox, 0, 0, 3, 1);
+        // Add backgrounds
+        Image orderNowImage = new Image(getClass().getResource("/com/example/javajams/images/tt.png").toExternalForm());
+        ImageView orderNowImageView = new ImageView(orderNowImage);
+        orderNowImageView.setFitWidth(600);
+        orderNowImageView.setFitHeight(120);
+        orderNowImageView.setPreserveRatio(true);
+        GridPane.setConstraints(orderNowImageView, 0, 0, 4, 1);
+        GridPane.setHalignment(orderNowImageView, javafx.geometry.HPos.CENTER);
+        GridPane.setValignment(orderNowImageView, javafx.geometry.VPos.CENTER);
+        gridPane.getChildren().add(orderNowImageView);
 
-        // Add buttons dynamically for the menu
+        // Add restaurants
         List<String> uniqueName = Arrays.asList(
                 "Persiskt", "Libanesiskt", "Burger King", "McDonalds",
                 "Tacos", "Turkiskt", "Pizza Hut", "Dominos", "Thai",
                 "Vietnamesiskt"
         );
 
+        // Add vbox to get vertical
+        VBox buttonBox = new VBox(10);
+        buttonBox.setAlignment(Pos.CENTER);
         for (int i = 0; i < uniqueName.size(); i++) {
             String buttonName = uniqueName.get(i);
             Button button = new Button(buttonName);
@@ -79,7 +84,7 @@ public class MenuController {
                             "-fx-background-radius: 10px;"
             );
 
-            // Adding hover effect
+            // Hover effect
             button.setOnMouseEntered(e -> button.setStyle(
                     "-fx-font-size: 18px;" +
                             "-fx-font-weight: bold;" +
@@ -101,14 +106,18 @@ public class MenuController {
                             "-fx-background-radius: 10px;"
             ));
 
-            gridPane.add(button, 0, i + 1);
-
             button.setPrefSize(200, 50);
-
             final int currentIndex = i;
             button.setOnAction(e -> showRestaurantInfo(currentIndex));
+
+            // Add every button
+            buttonBox.getChildren().add(button);
         }
 
+        // Add vbox with buttons
+        GridPane.setConstraints(buttonBox, 0, 1, 4, 1);
+        gridPane.getChildren().add(buttonBox);
+      
         Button surstrommingButton = new Button("Surströmming");
         surstrommingButton.setStyle(
                 "-fx-font-size: 18px;" +
@@ -150,6 +159,9 @@ public class MenuController {
         surstrommingButton.setOnAction(e -> showSurstrommingScene());
         gridPane.add(surstrommingButton, 0, uniqueName.size() + 1);
     }
+
+
+
 
     private void updateContent(Restaurant restaurant) {
         gridPane.getChildren().clear();

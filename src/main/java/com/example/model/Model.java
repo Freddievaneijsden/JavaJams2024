@@ -24,7 +24,6 @@ public class Model {
         Restaurant pho88 = new Restaurant("Pho88", "Fredriksdalsgatan 4A, 412 65 Göteborg", "Vietnamesiskt", "/com/example/javajams/images/Vietnameese.png","https://perspolis.nu/");
         Restaurant feskekorka = new Restaurant("Feskekorka", "Fisktorget 4, 411 20 Göteborg", "Svenskt", "/com/example/javajams/images/SurStrömming.png","https://perspolis.nu/");
 
-
         // Add restaurants to the list
         Restaurants.addAll(List.of(
                 perspolis, lebaneseGrillhouse, burgerKing, mcdonalds, tacoBar,
