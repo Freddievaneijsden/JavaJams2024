@@ -62,7 +62,7 @@ public class MenuController {
         List<String> uniqueName = Arrays.asList(
                 "Persiskt", "Libanesiskt", "Burger King", "McDonalds",
                 "Tacos", "Turkiskt", "Pizza Hut", "Dominos", "Thai",
-                "Vietnamesiskt", "Surströmming"
+                "Vietnamesiskt"
         );
 
         for (int i = 0; i < uniqueName.size(); i++) {
@@ -108,6 +108,47 @@ public class MenuController {
             final int currentIndex = i;
             button.setOnAction(e -> showRestaurantInfo(currentIndex));
         }
+
+        Button surstrommingButton = new Button("Surströmming");
+        surstrommingButton.setStyle(
+                "-fx-font-size: 18px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-background-color: linear-gradient(to bottom, #7c706d, #baada3);" +
+                        "-fx-border-color: #59504e;" +
+                        "-fx-border-width: 4px;" +
+                        "-fx-border-radius: 10px;" +
+                        "-fx-background-radius: 10px;"
+        );
+
+        surstrommingButton.setOnMouseEntered(e -> surstrommingButton.setStyle(
+                "-fx-font-size: 18px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-background-color: linear-gradient(to bottom, #93918f, #575353);" +
+                        "-fx-border-color: rgba(0,0,0,0.98);" +
+                        "-fx-border-width: 2px;" +
+                        "-fx-border-radius: 10px;" +
+                        "-fx-background-radius: 10px;"
+        ));
+        surstrommingButton.setOnMouseExited(e -> surstrommingButton.setStyle(
+                "-fx-font-size: 18px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-background-color: linear-gradient(to bottom, #8a7975, #bdaa9d);" +
+                        "-fx-border-color: #635a58;" +
+                        "-fx-border-width: 2px;" +
+                        "-fx-border-radius: 10px;" +
+                        "-fx-background-radius: 10px;"
+        ));
+
+        surstrommingButton.setPrefSize(200, 50);
+
+
+
+        // Unik logik för Surströmming-knappen
+        surstrommingButton.setOnAction(e -> showSurstrommingScene());
+        gridPane.add(surstrommingButton, 0, uniqueName.size() + 1);
     }
 
     private void updateContent(Restaurant restaurant) {
@@ -260,6 +301,37 @@ public class MenuController {
             resetContent();
         }else {
         }
+    }
+
+    private void showSurstrommingScene() {
+        gridPane.getChildren().clear();
+        gridPane.setAlignment(Pos.CENTER);
+
+        gridPane.setStyle(
+                "-fx-background-image: url('" + getClass().getResource("/com/example/javajams/images/SurStrömming.png").toExternalForm() + "'); " +
+                        "-fx-background-size: contain; " +
+                        "-fx-background-position: center; " +
+                        "-fx-background-repeat: no-repeat;");
+
+
+        // Lägger till en varningstext
+        Label warningLabel = new Label("Av alla maträtter du kunde välja...");
+        warningLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: red;");
+        gridPane.add(warningLabel, 0, 0);
+
+        // Lägger till lite humoristisk text
+        Label descriptionLabel = new Label("Ifrågasätter starkt dina smaklökar just nu.\nVar snäll och välj en annan maträtt");
+        descriptionLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: black;");
+        gridPane.add(descriptionLabel, 0, 1);
+
+        // Lägg till en tillbaka-knapp
+        Button backButton = new Button("Tillbaka");
+        backButton.setStyle(
+                "-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white; " +
+                        "-fx-background-color: linear-gradient(to bottom, #7c706d, #baada3);"
+        );
+        backButton.setOnAction(e -> resetContent());
+        gridPane.add(backButton, 0, 2);
     }
 }
 
