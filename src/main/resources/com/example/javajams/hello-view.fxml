@@ -3,9 +3,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
 
-<GridPane stylesheets="@css/styles.css" fx:id="gridPane" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.controller.MenuController"
+<GridPane fx:id="gridPane" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.controller.MenuController"
           hgap="10" vgap="10" alignment="center"
-          style="-fx-padding: 20;">
+          style="-fx-background-image: url('/com/example/javajams/images/rest.jpg'); -fx-background-size: cover; -fx-background-position: center; -fx-background-repeat: no-repeat; -fx-padding: 20;">
+
     <!-- Order Now Label -->
     <HBox GridPane.columnSpan="4" GridPane.rowIndex="0" alignment="center">
         <Label text="ORDER NOW" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: rgba(0,0,0,0.98);" />
