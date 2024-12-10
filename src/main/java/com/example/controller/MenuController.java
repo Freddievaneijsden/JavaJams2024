@@ -326,9 +326,9 @@ public class MenuController {
 
         // Anpassa innehållstexten
         doubleCheckAlert.setContentText(
-                "Du verkar vara sugen på att välja " + restaurant.getName() + " 🤩.\n\n" +
-                        "Men vad händer om detta är det bästa valet för dig just nu? 🙌\n\n" +
-                        "Vill du fortsätta eller tänka om? 🤔"
+                "Hur mår du egentligen? \n\n" +
+                "Klart du ska äta på " + restaurant.getName() + " 🤩.\n\n" +
+                        "Vi vill helst inte att du tänker om men om så är fallet...🤔"
         );
         doubleCheckAlert.getDialogPane().lookup(".content").setStyle(
                 "-fx-font-size: 18px; " +
