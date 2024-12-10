@@ -158,6 +158,7 @@ public class MenuController {
         // Unik logik för Surströmming-knappen
         surstrommingButton.setOnAction(e -> showSurstrommingScene());
         gridPane.add(surstrommingButton, 0, uniqueName.size() + 1);
+        buttonBox.getChildren().add(surstrommingButton);
     }
 
 
