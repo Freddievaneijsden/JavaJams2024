@@ -22,7 +22,7 @@ public class Model {
         Restaurant dominos = new Restaurant("Dominos", "Frida Hjertbergs Gata 10, 412 81 Göteborg", "Pizza", "/com/example/javajams/images/Domios.png");
         Restaurant arojjDii = new Restaurant("Arojj Dii", "Viktor Rydbergsgatan 42, 412 57 Göteborg", "Thaimat", "/com/example/javajams/images/ThaiMat.png");
         Restaurant pho88 = new Restaurant("Pho88", "Fredriksdalsgatan 4A, 412 65 Göteborg", "Vietnamesiskt", "/com/example/javajams/images/Vietnameese.png");
-        Restaurant feskekorka = new Restaurant("Feskekorka", "Fisktorget 4, 411 20 Göteborg", "Svenskt", "/com/example/javajams/images/SurStrömming.png");
+        Restaurant feskekorka = new Restaurant("Feskekôrka", "Fisktorget 4, 411 20 Göteborg", "Svenskt", "/com/example/javajams/images/SurStrömming.png");
 
 
         // Add restaurants to the list
