@@ -1,22 +1,20 @@
 package com.example.controller;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 import com.example.model.Model;
 import com.example.model.Restaurant;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-import java.awt.*;
 import java.util.*;
-import java.util.List;
 
 public class MenuController {
     private final Model model = new Model();
@@ -50,7 +48,7 @@ public class MenuController {
 
         // Add the "ORDER NOW" label
         HBox orderNowBox = new HBox();
-        Label orderNowLabel = new Label("ORDER NOW");
+        Label orderNowLabel = new Label("ORDER NoOoW");
         orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: Black; -fx-halignment: center;");
         orderNowBox.getChildren().add(orderNowLabel);
         orderNowBox.setStyle("-fx-alignment: center;");
@@ -134,7 +132,7 @@ public class MenuController {
         contentBox.setPadding(new Insets(20, 10, 20, 10));
 
 
-        Label orderNowLabel = new Label("ORDER NOW");
+        Label orderNowLabel = new Label(model.getRandomSurpriseLabel());
         orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: Black;");
         contentBox.getChildren().add(orderNowLabel);
 
@@ -143,49 +141,60 @@ public class MenuController {
                         "Address: " + restaurant.getAddress() + "\n" +
                         "Cuisine: " + restaurant.getCuisine()
         );
-        restaurantInfo.setStyle("-fx-font-size: 18px; -fx-text-fill: black;");
+        restaurantInfo.setStyle(
+                "-fx-font-size: 18px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-background-color: linear-gradient(to bottom, #93918f, #575353);" +
+                        "-fx-border-color: rgba(0,0,0,0.98);" +
+                        "-fx-border-width: 2px;" +
+                        "-fx-border-radius: 10px;" +
+                        "-fx-background-radius: 10px;");
         contentBox.getChildren().add(restaurantInfo);
+
+        // Adding hover effect
+        restaurantInfo.setOnMouseEntered(e -> restaurantInfo.setStyle(
+                "-fx-font-size: 18px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-background-color: linear-gradient(to bottom, #93918f, #575353);" +
+                        "-fx-border-color: rgba(0,0,0,0.98);" +
+                        "-fx-border-width: 2px;" +
+                        "-fx-border-radius: 10px;" +
+                        "-fx-background-radius: 10px;"
+        ));
+        restaurantInfo.setOnMouseExited(e -> restaurantInfo.setStyle(
+                "-fx-font-size: 18px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-background-color: linear-gradient(to bottom, #8a7975, #bdaa9d);" +
+                        "-fx-border-color: #635a58;" +
+                        "-fx-border-width: 2px;" +
+                        "-fx-border-radius: 10px;" +
+                        "-fx-background-radius: 10px;"
+        ));
 
         GridPane.setVgrow(contentBox, Priority.ALWAYS);
         gridPane.add(contentBox, 0, 0);
 
-        HBox buttonBox = new HBox(50);
-        buttonBox.setAlignment(Pos.BOTTOM_CENTER);
+        HBox buttonBox = new HBox(20); // 20px spacing mellan knapparna
+        buttonBox.setAlignment(Pos.BOTTOM_CENTER); // Centrera knappar längst ner
 
-        // Yes button
-        Image yesImage = new Image(getClass().getResource("/com/example/javajams/images/Ja.jpg").toExternalForm());
-        ImageView yesImageView = new ImageView(yesImage);
-        yesImageView.setFitWidth(150);
-        yesImageView.setFitHeight(150);
-        yesImageView.setPreserveRatio(true);
-
-        Button yesButton = new Button();
-        yesButton.setGraphic(yesImageView);
-        yesButton.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+        // Ja-knappen
+        Button yesButton = new Button("Yes");
+        yesButton.setStyle("-fx-font-size: 18px; -fx-background-color: green; -fx-text-fill: Red;");
         yesButton.setOnAction(e -> showConfirmationMessage(restaurant));
+        buttonBox.getChildren().add(yesButton);
 
-        // No button
-        Image noImage = new Image(getClass().getResource("/com/example/javajams/images/Nej.jpg").toExternalForm());
-        ImageView noImageView = new ImageView(noImage);
-        noImageView.setFitWidth(150);
-        noImageView.setFitHeight(150);
-        noImageView.setPreserveRatio(true);
-
-        Button noButton = new Button();
-        noButton.setGraphic(noImageView);
-        noButton.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+        // Nej-knappen
+        Button noButton = new Button("No");
+        noButton.setStyle("-fx-font-size: 18px; -fx-background-color: red; -fx-text-fill: Green;");
         noButton.setOnAction(e -> showDoubleCheckButton(restaurant));
+        buttonBox.getChildren().add(noButton);
 
-        // add buttons to gridpane
-        HBox buttonsBox = new HBox(20);
-        buttonsBox.setAlignment(Pos.CENTER);
-        buttonsBox.getChildren().addAll(yesButton, noButton);
-        buttonsBox.setPadding(new Insets(20));
-
-        // Add hbox to gridpane
-        GridPane.setMargin(buttonsBox, new Insets(10));
-        gridPane.add(buttonsBox, 0, 2);
-
+        // Lägg till buttonBox i GridPane längst ner
+        GridPane.setVgrow(buttonBox, Priority.ALWAYS);
+        gridPane.add(buttonBox, 0, 2);
     }
 
 
@@ -217,10 +226,8 @@ public class MenuController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Are you sure");
         alert.setHeaderText("You looked like you really wanted " + restaurant.getName());
-        alert.setContentText("Are you positive that " + restaurant.getName() + "isn't a better choice?");
+        alert.setContentText("Are you positive that " + restaurant.getName() + "isn't a better choise?");
 
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.setStyle("-fx-font-size: 16px;");
         ButtonType yesButton = new ButtonType("Yes");
         ButtonType noButton = new ButtonType("No");
         alert.getButtonTypes().setAll(yesButton, noButton);
@@ -233,3 +240,10 @@ public class MenuController {
         }
     }
 }
+
+//    private void showRandomRestaurant() {
+//        Random random = new Random();
+//        int randomIndex = random.nextInt(model.getRestaurants().size());
+//        Restaurant randomRestaurant = model.getRestaurants().get(randomIndex);
+//        updateContent(randomRestaurant); // Show the random restaurant details
+//    }
