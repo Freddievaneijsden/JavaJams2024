@@ -141,8 +141,38 @@ public class MenuController {
                         "Address: " + restaurant.getAddress() + "\n" +
                         "Cuisine: " + restaurant.getCuisine()
         );
-        restaurantInfo.setStyle("-fx-font-size: 18px; -fx-text-fill: black;");
+        restaurantInfo.setStyle(
+                "-fx-font-size: 18px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-background-color: linear-gradient(to bottom, #93918f, #575353);" +
+                        "-fx-border-color: rgba(0,0,0,0.98);" +
+                        "-fx-border-width: 2px;" +
+                        "-fx-border-radius: 10px;" +
+                        "-fx-background-radius: 10px;");
         contentBox.getChildren().add(restaurantInfo);
+
+        // Adding hover effect
+        restaurantInfo.setOnMouseEntered(e -> restaurantInfo.setStyle(
+                "-fx-font-size: 18px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-background-color: linear-gradient(to bottom, #93918f, #575353);" +
+                        "-fx-border-color: rgba(0,0,0,0.98);" +
+                        "-fx-border-width: 2px;" +
+                        "-fx-border-radius: 10px;" +
+                        "-fx-background-radius: 10px;"
+        ));
+        restaurantInfo.setOnMouseExited(e -> restaurantInfo.setStyle(
+                "-fx-font-size: 18px;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-text-fill: white;" +
+                        "-fx-background-color: linear-gradient(to bottom, #8a7975, #bdaa9d);" +
+                        "-fx-border-color: #635a58;" +
+                        "-fx-border-width: 2px;" +
+                        "-fx-border-radius: 10px;" +
+                        "-fx-background-radius: 10px;"
+        ));
 
         GridPane.setVgrow(contentBox, Priority.ALWAYS);
         gridPane.add(contentBox, 0, 0);
