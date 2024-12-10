@@ -9,12 +9,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-
+import java.awt.*;
 import java.util.*;
+import java.util.List;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class MenuController {
     private final Model model = new Model();
@@ -180,21 +184,39 @@ public class MenuController {
         HBox buttonBox = new HBox(20); // 20px spacing mellan knapparna
         buttonBox.setAlignment(Pos.BOTTOM_CENTER); // Centrera knappar längst ner
 
-        // Ja-knappen
-        Button yesButton = new Button("Yes");
-        yesButton.setStyle("-fx-font-size: 18px; -fx-background-color: green; -fx-text-fill: Red;");
+        // Yes button
+        Image yesImage = new Image(getClass().getResource("/com/example/javajams/images/Ja.jpg").toExternalForm());
+        ImageView yesImageView = new ImageView(yesImage);
+        yesImageView.setFitWidth(150);
+        yesImageView.setFitHeight(150);
+        yesImageView.setPreserveRatio(true);
+
+        Button yesButton = new Button();
+        yesButton.setGraphic(yesImageView);
+        yesButton.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
         yesButton.setOnAction(e -> showConfirmationMessage(restaurant));
-        buttonBox.getChildren().add(yesButton);
 
-        // Nej-knappen
-        Button noButton = new Button("No");
-        noButton.setStyle("-fx-font-size: 18px; -fx-background-color: red; -fx-text-fill: Green;");
+        // No button
+        Image noImage = new Image(getClass().getResource("/com/example/javajams/images/Nej.jpg").toExternalForm());
+        ImageView noImageView = new ImageView(noImage);
+        noImageView.setFitWidth(150);
+        noImageView.setFitHeight(150);
+        noImageView.setPreserveRatio(true);
+
+        Button noButton = new Button();
+        noButton.setGraphic(noImageView);
+        noButton.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
         noButton.setOnAction(e -> showDoubleCheckButton(restaurant));
-        buttonBox.getChildren().add(noButton);
 
-        // Lägg till buttonBox i GridPane längst ner
-        GridPane.setVgrow(buttonBox, Priority.ALWAYS);
-        gridPane.add(buttonBox, 0, 2);
+        // add buttons to gridpane
+        HBox buttonsBox = new HBox(20);
+        buttonsBox.setAlignment(Pos.CENTER);
+        buttonsBox.getChildren().addAll(yesButton, noButton);
+        buttonsBox.setPadding(new Insets(20));
+
+        // Add hbox to gridpane
+        GridPane.setMargin(buttonsBox, new Insets(10));
+        gridPane.add(buttonsBox, 0, 2);
     }
 
 
