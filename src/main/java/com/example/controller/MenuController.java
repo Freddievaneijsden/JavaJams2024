@@ -186,6 +186,18 @@ public class MenuController {
                         "Address: " + restaurant.getAddress() + "\n" +
                         "Cuisine: " + restaurant.getCuisine()
         );
+        restaurantInfo.setOnMouseClicked(event -> {
+            String url = restaurant.getWebsite(); // Hämta restaurangens webbadress
+            if (url != null && !url.isEmpty()) {
+                try {
+                    java.awt.Desktop.getDesktop().browse(new java.net.URI(url)); // Öppnar webbläsaren
+                } catch (Exception e) {
+                    System.out.println("Kunde inte öppna länken: " + e.getMessage());
+                }
+            } else {
+                System.out.println("Ingen webbadress tillgänglig för denna restaurang.");
+            }
+        });
         restaurantInfo.setStyle(
                 "-fx-font-size: 18px;" +
                         "-fx-font-weight: bold;" +
@@ -249,7 +261,7 @@ public class MenuController {
         noButton.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
         noButton.setOnAction(e -> showDoubleCheckButton(restaurant));
 
-        // add buttons to gridpane
+        // add butt ons to gridpane
         HBox buttonsBox = new HBox(20);
         buttonsBox.setAlignment(Pos.CENTER);
         buttonsBox.getChildren().addAll(yesButton, noButton);
