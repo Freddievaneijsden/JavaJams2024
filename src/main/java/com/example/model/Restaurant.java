@@ -5,12 +5,14 @@ public class Restaurant {
         private final String address;
         private final String cuisine;
         private final String backgroundImage;
+        private final String website;
 
-        public Restaurant(String name, String address, String cuisine, String backgroundImage) {
+        public Restaurant(String name, String address, String cuisine, String backgroundImage, String website) {
             this.name = name;
             this.address = address;
             this.cuisine = cuisine;
             this.backgroundImage = backgroundImage;
+            this.website = website;
         }
 
         // Getters and setters...
@@ -27,6 +29,8 @@ public class Restaurant {
         }
 
         public String getBackgroundImage() {return backgroundImage;}
+
+        public String getWebsite() {return website;}
 
 
     }
