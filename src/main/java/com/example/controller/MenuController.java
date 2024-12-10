@@ -132,7 +132,7 @@ public class MenuController {
         contentBox.setPadding(new Insets(20, 10, 20, 10));
 
 
-        Label orderNowLabel = new Label("ORDER NoOoW");
+        Label orderNowLabel = new Label(model.getRandomSurpriseLabel());
         orderNowLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: Black;");
         contentBox.getChildren().add(orderNowLabel);
 

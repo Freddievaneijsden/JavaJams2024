@@ -8,6 +8,7 @@ import java.util.Map;
 public class Model {
     private final List<Restaurant> Restaurants = new ArrayList<>();
     private final Map<Restaurant, Restaurant> mismatchedRestaurants = new HashMap<>();
+    List<String> listOfSurpriseExpressions = new ArrayList<>();
 
     public Model() {
         // Create restaurants
@@ -42,7 +43,17 @@ public class Model {
         mismatchedRestaurants.put(pho88, arojjDii);
         mismatchedRestaurants.put(arojjDii, pho88);
         mismatchedRestaurants.put(feskekorka, feskekorka);
-        // You can add more mismatched logic as needed
+
+        listOfSurpriseExpressions.add("Surprise! Utmana dina smaklökar med något oväntat!");
+        listOfSurpriseExpressions.add("Tråkigt! Du borde testa det här istället!");
+        listOfSurpriseExpressions.add("Det har du ätit 5 dagar i rad, dags att byta!");
+        listOfSurpriseExpressions.add("Du verkar tveksam, låt oss välja mat åt dig!");
+        listOfSurpriseExpressions.add("Lite nytt har ingen dött av!");
+        listOfSurpriseExpressions.add("Vi tror du är sugen på något annat!");
+        listOfSurpriseExpressions.add("Fortsätt inte i samma hjulspår, testa något nytt!");
+        listOfSurpriseExpressions.add("Enligt vårt medium borde du äta detta för framtida lycka!");
+        listOfSurpriseExpressions.add("Ska du verkligen äta detta igen? Här är ett annat förslag!");
+        listOfSurpriseExpressions.add("Upptäck nya smaker med en oväntad överraskning!");
     }
 
     @Override
@@ -67,4 +78,9 @@ public class Model {
     public Restaurant getMismatchedRestaurant(Restaurant restaurant) {
         return mismatchedRestaurants.getOrDefault(restaurant, restaurant); // Return mismatched or the same if no mismatch exists
     }
+
+    public String getRandomSurpriseLabel() {
+        return listOfSurpriseExpressions.get((int) (Math.random() * listOfSurpriseExpressions.size()));
+    }
+
 }
