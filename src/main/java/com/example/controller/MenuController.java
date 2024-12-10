@@ -302,12 +302,13 @@ public class MenuController {
         // A confirmation alert for the user after choosing "Yes"
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Confirmation");
-        alert.setHeaderText("Your choice");
-        alert.setContentText("You have chosen " + restaurant.getName());
-        alert.showAndWait();
+        alert.setContentText("Du har valt " + restaurant.getName() + "\n Tryck på länken ovan");
+        // Change the font size here
+        alert.getDialogPane().lookup(".content").setStyle(
+                "-fx-font-size: 18px; -fx-font-weight: bold;".formatted());
 
-        // After confirming, reset the content to the main menu
-        resetContent();
+        alert.showAndWait();
+        updateContent(restaurant);
     }
 
     private void showDoubleCheckButton(Restaurant restaurant) {
@@ -353,7 +354,7 @@ public class MenuController {
         // Visa alerten och hantera resultatet
         Optional<ButtonType> result = doubleCheckAlert.showAndWait();
 
-        if (result.isPresent() && result.get() == yesButton) {
+        if (result.isPresent() && result.get() == noButton) {
             System.out.println("Användaren bekräftade sitt val! 🎉");
             resetContent(); // Bekräftat val
         } else {
@@ -363,6 +364,11 @@ public class MenuController {
 
 
     private void showSurstrommingScene() {
+
+        VBox contentBox = new VBox(20);
+        contentBox.setAlignment(Pos.TOP_CENTER);
+        contentBox.setPadding(new Insets(20, 10, 20, 10));
+
         gridPane.getChildren().clear();
         gridPane.setAlignment(Pos.CENTER);
 
@@ -375,20 +381,45 @@ public class MenuController {
 
         // Lägger till en varningstext
         Label warningLabel = new Label("Av alla maträtter du kunde välja...");
-        warningLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: red;");
+        warningLabel.setStyle("-fx-font-size: 30px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-text-fill: red;" +
+                "-fx-background-color: linear-gradient(to bottom, #93918f, #575353);" +
+                "-fx-border-color: rgba(0,0,0,0.98);" +
+                "-fx-border-width: 2px;" +
+                "-fx-border-radius: 10px;" +
+                "-fx-background-radius: 10px;");
         gridPane.add(warningLabel, 0, 0);
 
         // Lägger till lite humoristisk text
         Label descriptionLabel = new Label("Ifrågasätter starkt dina smaklökar just nu.\nVar snäll och välj en annan maträtt");
-        descriptionLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: black;");
-        gridPane.add(descriptionLabel, 0, 1);
+        descriptionLabel.setStyle(
+                "-fx-font-size: 18px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-text-fill: white;" +
+                "-fx-background-color: linear-gradient(to bottom, #93918f, #575353);" +
+                "-fx-border-color: rgba(0,0,0,0.98);" +
+                "-fx-border-width: 2px;" +
+                "-fx-border-radius: 10px;" +
+                "-fx-background-radius: 10px;"
+                );
+        contentBox.getChildren().add(descriptionLabel); // Add description label to VBox
+
+        // Add the VBox to the GridPane, centered
+        GridPane.setConstraints(contentBox, 0, 1);
+        gridPane.add(contentBox, 0, 1);
+
 
         // Lägg till en tillbaka-knapp
         Button backButton = new Button("Tillbaka");
-        backButton.setStyle(
-                "-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white; " +
-                        "-fx-background-color: linear-gradient(to bottom, #7c706d, #baada3);"
-        );
+        backButton.setStyle("-fx-font-size: 18px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-text-fill: white;" +
+                "-fx-background-color: linear-gradient(to bottom, #93918f, #575353);" +
+                "-fx-border-color: rgba(0,0,0,0.98);" +
+                "-fx-border-width: 2px;" +
+                "-fx-border-radius: 10px;" +
+                "-fx-background-radius: 10px;");
         backButton.setOnAction(e -> resetContent());
         gridPane.add(backButton, 0, 2);
     }
