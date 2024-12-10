@@ -311,23 +311,56 @@ public class MenuController {
     }
 
     private void showDoubleCheckButton(Restaurant restaurant) {
-        // A confirmation alert for the user after choosing "Yes"
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Are you sure");
-        alert.setHeaderText("You looked like you really wanted " + restaurant.getName());
-        alert.setContentText("Are you positive that " + restaurant.getName() + "isn't a better choise?");
+        // Skapa en Alert med AlertType.CONFIRMATION
+        Alert doubleCheckAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        doubleCheckAlert.setTitle("Viktigt val!");
 
-        ButtonType yesButton = new ButtonType("Yes");
-        ButtonType noButton = new ButtonType("No");
-        alert.getButtonTypes().setAll(yesButton, noButton);
+        // Anpassa rubriken
+        doubleCheckAlert.setHeaderText("💡 Är du säker?");
+        doubleCheckAlert.getDialogPane().lookup(".header-panel").setStyle(
+                "-fx-font-size: 18px; " +
+                        "-fx-font-weight: bold; " +
+                        "-fx-text-fill: #1e3a8a;" // Mörk blå
+        );
 
-        Optional<ButtonType> result = alert.showAndWait();
+        // Anpassa innehållstexten
+        doubleCheckAlert.setContentText(
+                "Du verkar vara sugen på att välja " + restaurant.getName() + " 🤩.\n\n" +
+                        "Men vad händer om detta är det bästa valet för dig just nu? 🙌\n\n" +
+                        "Vill du fortsätta eller tänka om? 🤔"
+        );
+        doubleCheckAlert.getDialogPane().lookup(".content").setStyle(
+                "-fx-font-size: 18px; " +
+                        "-fx-font-family: 'Arial'; " +
+                        "-fx-line-spacing: 1.5; " +
+                        "-fx-text-fill: #374151;" // Neutral mörkgrå
+        );
+
+        // Lägg till knappar med tydliga val
+        ButtonType yesButton = new ButtonType("✅ Absolut, kör på!");
+        ButtonType noButton = new ButtonType("🔄 Jag vill ändra mig");
+        doubleCheckAlert.getButtonTypes().setAll(yesButton, noButton);
+
+        // Anpassa dialogpanelens bakgrundsfärg och kant
+        doubleCheckAlert.getDialogPane().setStyle(
+                "-fx-background-color: #f9fafb; " + // Ljus bakgrund
+                        "-fx-border-color: #60a5fa; " +    // Ljusblå kant
+                        "-fx-border-width: 2px; " +
+                        "-fx-border-radius: 10px; " +
+                        "-fx-background-radius: 10px;"
+        );
+
+        // Visa alerten och hantera resultatet
+        Optional<ButtonType> result = doubleCheckAlert.showAndWait();
 
         if (result.isPresent() && result.get() == yesButton) {
-            resetContent();
-        }else {
+            System.out.println("Användaren bekräftade sitt val! 🎉");
+            resetContent(); // Bekräftat val
+        } else {
+            System.out.println("Användaren ångrade sig. 🛑");
         }
     }
+
 
     private void showSurstrommingScene() {
         gridPane.getChildren().clear();
