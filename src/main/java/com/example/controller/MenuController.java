@@ -165,6 +165,8 @@ public class MenuController {
         surstrommingButton.setOnAction(e -> showSurstrommingScene());
         gridPane.add(surstrommingButton, 0, uniqueName.size() + 1);
         buttonBox.getChildren().add(surstrommingButton);
+
+        MediaManager.playBackgroundMusic("/com/example/javajams/Sounds/MainMenu.mp3", true);
     }
 
 
@@ -290,6 +292,8 @@ public class MenuController {
         // Add hbox to gridpane
         GridPane.setMargin(buttonsBox, new Insets(10));
         gridPane.add(buttonsBox, 0, 2);
+
+
     }
 
 
@@ -398,7 +402,7 @@ public class MenuController {
         backButton.setOnAction(e -> resetContent());
         gridPane.add(backButton, 0, 2);
 
-        MediaManager.playBackgroundMusic("/com/example/javajams/Sounds/Voicy_WTF.mp3", false);
+        MediaManager.playBackgroundMusic("/com/example/javajams/Sounds/WTF.mp3", false);
 
 //        playSound("C:/Users/Danie/IdeaProjects/JavaJams2024/src/main/resources/com/example/javajams/Sounds/Voicy_WTF.mp3");
     }
