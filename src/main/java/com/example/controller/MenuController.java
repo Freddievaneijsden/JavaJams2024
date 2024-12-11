@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.model.Model;
 import com.example.model.Restaurant;
+import com.example.utils.MediaManager;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,10 +16,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
+import javax.print.attribute.standard.Media;
+import javax.sound.sampled.*;
 
 public class MenuController {
     private final Model model = new Model();
@@ -391,7 +397,30 @@ public class MenuController {
         );
         backButton.setOnAction(e -> resetContent());
         gridPane.add(backButton, 0, 2);
+
+        MediaManager.playBackgroundMusic("/com/example/javajams/Sounds/Voicy_WTF.mp3", false);
+
+//        playSound("C:/Users/Danie/IdeaProjects/JavaJams2024/src/main/resources/com/example/javajams/Sounds/Voicy_WTF.mp3");
     }
+
+//    public void playSound(String soundFilePath) {
+//        try {
+//            // Ladda ljudfilen som en Clip
+//            File soundFile = new File(getClass().getResource(soundFilePath).toExternalForm());
+//            AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+//            Clip clip = AudioSystem.getClip();
+//            clip.open(audioIn);
+//
+//            // Spela upp ljudet
+//            clip.start();
+//        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+
+
+
 }
 
 //    private void showRandomRestaurant() {
