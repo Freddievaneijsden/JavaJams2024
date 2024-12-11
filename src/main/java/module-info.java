@@ -1,6 +1,7 @@
 module com.example.javajams {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
     requires jdk.compiler;
     requires java.desktop;
 
